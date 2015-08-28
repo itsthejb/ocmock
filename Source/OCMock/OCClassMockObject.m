@@ -40,7 +40,11 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"OCMockObject(%@)", NSStringFromClass(mockedClass)];
+  NSString *string = [super description];
+  if (!string) {
+    return [NSString stringWithFormat:@"OCMockObject(%@)", NSStringFromClass(mockedClass)];
+  }
+  return string;
 }
 
 - (Class)mockedClass

@@ -107,7 +107,11 @@
 
 - (NSString *)description
 {
-	return @"OCMockObject";
+  if (descriptionBlock) {
+    return [NSString stringWithFormat:@"<%@: %p>, %@",
+            NSStringFromClass([self class]), self, descriptionBlock(self)];
+  }
+  return nil;
 }
 
 - (void)addStub:(OCMInvocationStub *)aStub
@@ -207,6 +211,10 @@
     [self verifyAtLocation:location];
 }
 
+- (void)describeWithBlock:(NSString *(^)(id mockObject))block
+{
+  descriptionBlock = block;
+}
 
 #pragma mark Verify after running
 

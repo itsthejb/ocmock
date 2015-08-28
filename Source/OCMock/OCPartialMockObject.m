@@ -44,7 +44,11 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"OCPartialMockObject(%@)", NSStringFromClass(mockedClass)];
+  NSString *string = [super description];
+  if (!string) {
+    return [NSString stringWithFormat:@"OCPartialMockObject(%@)", NSStringFromClass(mockedClass)];
+  }
+  return string;
 }
 
 - (NSObject *)realObject

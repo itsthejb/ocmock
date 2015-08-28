@@ -31,8 +31,12 @@
 
 - (NSString *)description
 {
+  NSString *string = [super description];
+  if (!string) {
     const char* name = protocol_getName(mockedProtocol);
     return [NSString stringWithFormat:@"OCMockObject(%s)", name];
+  }
+  return string;
 }
 
 #pragma mark  Proxy API

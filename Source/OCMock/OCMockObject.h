@@ -31,6 +31,7 @@
 	NSMutableArray	*expectations;
 	NSMutableArray	*exceptions;
     NSMutableArray  *invocations;
+  NSString *(^descriptionBlock)(id);
 }
 
 + (id)mockForClass:(Class)aClass;
@@ -57,6 +58,8 @@
 - (void)verifyWithDelay:(NSTimeInterval)delay atLocation:(OCMLocation *)location;
 
 - (void)stopMocking;
+
+- (void)describeWithBlock:(NSString *(^)(id mockObject))block;
 
 // internal use only
 
